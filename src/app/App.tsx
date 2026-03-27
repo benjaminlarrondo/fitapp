@@ -4,6 +4,7 @@ import "dayjs/locale/es";
 import { BottomNav } from "@/components/BottomNav";
 import { Card } from "@/components/Card";
 import { Pill } from "@/components/Pill";
+import { SaveStatusBar } from "@/components/SaveStatusBar";
 import { useAppStore } from "@/app/store";
 import { createEmptyHabit } from "@/data/defaults";
 import { getCurrentStreak, getHabitCompletion, getWeeklyMetrics } from "@/lib/analytics/metrics";
@@ -86,7 +87,7 @@ export const App = () => {
   }, [hydrateCloud]);
 
   return (
-    <div className="mx-auto min-h-screen w-full max-w-[980px] px-3 pb-8 pt-3 sm:px-4 lg:px-4">
+    <div className="mx-auto min-h-screen w-full max-w-[980px] px-3 pb-24 pt-3 sm:px-4 lg:px-4">
       <BottomNav activeTab={activeTab} onChange={setActiveTab} />
 
       <header>
@@ -242,6 +243,8 @@ export const App = () => {
           ) : null}
         </Suspense>
       </main>
+
+      <SaveStatusBar cloud={cloud} lastUpdatedAt={data.lastUpdatedAt} />
 
     </div>
   );

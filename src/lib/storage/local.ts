@@ -8,13 +8,16 @@ const STORAGE_KEY = "fitness-tracker-app-data";
 
 export const saveAppData = (data: AppData) => {
   if (typeof localStorage === "undefined") return;
+  const stamped = {
+    ...data,
+    lastUpdatedAt: dayjs().toISOString(),
+  };
   localStorage.setItem(
     STORAGE_KEY,
-    JSON.stringify({
-      ...data,
-      lastUpdatedAt: dayjs().toISOString(),
-    }),
+    JSON.stringify(stamped),
   );
+
+  return stamped;
 };
 
 export const loadAppData = (): AppData => {

@@ -63,8 +63,10 @@ const defaultDate =
 let cloudListenerRegistered = false;
 
 const persist = (data: AppData) => {
-  saveAppData(data);
-  return data;
+  return saveAppData(data) ?? {
+    ...data,
+    lastUpdatedAt: dayjs().toISOString(),
+  };
 };
 
 const mergeRegeneratedSessions = (current: Session[], profile: UserProfile) => {
